@@ -1,3 +1,4 @@
+import Login from "./pages/Login"
 
 
 function App() {
@@ -5,7 +6,8 @@ function App() {
 
   return (
     <>
-      <div>Chat !</div>
+      <Login />
+      
     </>
   )
 }
