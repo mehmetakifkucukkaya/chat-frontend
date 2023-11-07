@@ -1,13 +1,18 @@
-import React from 'react'
 import Navbar from '../components/Navbar';
 import LoginForm from '../components/LoginForm';
+import Footer from '../components/Footer';
 
 const Login = () => {
     return (
-        <>
+        <div className="min-h-screen flex flex-col justify-between">
             <Navbar />
-            <LoginForm />
-        </>
+
+            <div className="flex-grow">
+                <LoginForm />
+            </div>
+
+            <Footer />
+        </div>
     )
 }
 

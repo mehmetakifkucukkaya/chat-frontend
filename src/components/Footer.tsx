@@ -1,0 +1,37 @@
+import { RiRobot2Fill } from 'react-icons/ri'
+
+const Footer = () => {
+    return (
+
+        // TODO: Responsive yapılacak.
+
+        <div className='bg-gray-100 h-[260px] flex justify-between '>
+
+            {/* Left Area -> Includes icon and app name */}
+            {/* //TODO: Anasayfaya yönlendirilecek. */}
+            <button className='ml-6 lg:ml-40 md:ml-24 sm:ml-16 mt-3 flex justify-center items-center'>
+                <RiRobot2Fill size={40} />
+                <h1 className='pl-5 text-lg font-semibold tracking-normal leading-normal '>FunCodes</h1>
+            </button>
+
+            {/* Center Area ->Includes Support,Term of Use and Privacy Polciy */}
+            <div className='text-[#666666] flex items-center space-x-9'>
+
+                {/* //TODO: Gerekli yönlendirilmeler yapılacak. */}
+                <button className='text-base hover:underline'>Support</button>
+                <button className='text-base hover:underline'>Privacy Policy</button>
+                <button className='text-base hover:underline'>Term of Use</button>
+            </div>
+
+
+            {/* Right Area -> Includes Copyright */}
+            <div className='flex items-center'>
+                <p className='text-black text-xs mr-40'>@ 2023 AI App</p>
+            </div>
+
+
+        </div>
+    )
+}
+
+export default Footer

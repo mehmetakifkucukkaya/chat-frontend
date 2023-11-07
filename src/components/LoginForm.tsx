@@ -4,6 +4,8 @@ import { BiMessage } from 'react-icons/bi'
 
 const LoginForm = () => {
 
+    //TODO: Validate işlemleri yapılacak
+
     const [showPassword, setShowPassword] = useState(false);
 
     const togglePasswordVisibility: MouseEventHandler<HTMLButtonElement> = (event) => {
