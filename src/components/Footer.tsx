@@ -5,7 +5,7 @@ const Footer = () => {
 
         // TODO: Responsive yapılacak.
 
-        <div className='bg-gray-100 h-[260px] flex justify-between '>
+        <div className='bg-gray-100 h-[260px] flex flex-row max-md:flex-col justify-between '>
 
             {/* Left Area -> Includes icon and app name */}
             {/* //TODO: Anasayfaya yönlendirilecek. */}
@@ -15,7 +15,7 @@ const Footer = () => {
             </button>
 
             {/* Center Area ->Includes Support,Term of Use and Privacy Polciy */}
-            <div className='text-[#666666] flex items-center space-x-9'>
+            <div className='text-[#666666] flex justify-center items-center space-x-9'>
 
                 {/* //TODO: Gerekli yönlendirilmeler yapılacak. */}
                 <button className='text-base hover:underline'>Support</button>
@@ -25,7 +25,7 @@ const Footer = () => {
 
 
             {/* Right Area -> Includes Copyright */}
-            <div className='flex items-center'>
+            <div className='flex items-center justify-center'>
                 <p className='text-black text-xs mr-40'>@ 2023 AI App</p>
             </div>
 

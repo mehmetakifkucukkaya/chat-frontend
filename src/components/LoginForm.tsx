@@ -1,18 +1,37 @@
 import { MouseEventHandler, useState } from 'react'
 import { HiEyeOff, HiEye } from 'react-icons/hi'
 import { BiMessage } from 'react-icons/bi'
+import axios from 'axios';
 
 const LoginForm = () => {
 
     //TODO: Validate işlemleri yapılacak
 
-    const [showPassword, setShowPassword] = useState(false);
+    const [showPassword, setShowPassword] = useState<boolean>(false);
+
 
     const togglePasswordVisibility: MouseEventHandler<HTMLButtonElement> = (event) => {
         setShowPassword(!showPassword);
 
         event.preventDefault();
     };
+
+
+    const login = () => {
+        axios.post('http://localhost:3000/auth/login', {
+            email: 'ismail',
+            password: '123'
+        })
+            .then(function (response) {
+                localStorage.setItem('token', response.data.data); //* Token localstorage'a kaydedildi.
+
+                //* Kontrol amaçlı yazdırıldı.
+                // console.log(localStorage.getItem('token')); 
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
 
 
     return (
@@ -55,7 +74,7 @@ const LoginForm = () => {
 
             {/* Button */}
             <div className="">
-                <button className="bg-[#030712] text-white text-s mt-4 rounded-md h-[50px] md:w-[400px] sm:w-64 w-[340px] flex items-center justify-center">
+                <button onClick={login} className="bg-[#030712] text-white text-s mt-4 rounded-md h-[50px] md:w-[400px] sm:w-64 w-[340px] flex items-center justify-center">
                     <BiMessage className="mr-2" size={15} />
                     Continue
                 </button>
@@ -68,3 +87,4 @@ const LoginForm = () => {
 }
 
 export default LoginForm
+
