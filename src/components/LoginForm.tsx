@@ -1,4 +1,4 @@
-import { MouseEventHandler, useState } from 'react'
+import { ChangeEventHandler, MouseEventHandler, useState } from 'react'
 import { HiEyeOff, HiEye } from 'react-icons/hi'
 import { BiMessage } from 'react-icons/bi'
 import axios from 'axios';
@@ -8,7 +8,8 @@ const LoginForm = () => {
     //TODO: Validate işlemleri yapılacak
 
     const [showPassword, setShowPassword] = useState<boolean>(false);
-
+    const [email, setEmail] = useState<string>('');
+    const [password, setPassword] = useState<string>('');
 
     const togglePasswordVisibility: MouseEventHandler<HTMLButtonElement> = (event) => {
         setShowPassword(!showPassword);
@@ -16,17 +17,24 @@ const LoginForm = () => {
         event.preventDefault();
     };
 
+    const handleEmailChange: ChangeEventHandler<HTMLInputElement> = (event) => {
+        setEmail(event.target.value);
+    };
+
+    const handlePasswordChange: ChangeEventHandler<HTMLInputElement> = (event) => {
+        setPassword(event.target.value);
+    };
 
     const login = () => {
         axios.post('http://localhost:3000/auth/login', {
-            email: 'ismail',
-            password: '123'
+            email: email,
+            password: password
         })
             .then(function (response) {
                 localStorage.setItem('token', response.data.data); //* Token localstorage'a kaydedildi.
 
                 //* Kontrol amaçlı yazdırıldı.
-                // console.log(localStorage.getItem('token')); 
+                console.log(localStorage.getItem('token'));
             })
             .catch(function (error) {
                 console.log(error);
@@ -53,12 +61,16 @@ const LoginForm = () => {
                     className="mb-6 w-[400px] p-3 rounded-xl border border-gray-300"
                     type="email"
                     placeholder="Email"
+                    value={email}
+                    onChange={handleEmailChange}
                 />
                 <div className="relative mb-3">
                     <input
                         className="w-full p-3 rounded-xl border border-gray-300"
                         type={showPassword ? 'text' : 'password'}
                         placeholder="Password"
+                        value={password}
+                        onChange={handlePasswordChange}
                     />
                     <button
                         className="absolute top-1/2 right-4 transform -translate-y-1/2 text-xl"
