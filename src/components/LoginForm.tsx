@@ -2,11 +2,13 @@ import { ChangeEventHandler, MouseEventHandler, useState } from 'react'
 import { HiEyeOff, HiEye } from 'react-icons/hi'
 import { BiMessage } from 'react-icons/bi'
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const LoginForm = () => {
 
     //TODO: Validate işlemleri yapılacak
-
+    const navigate = useNavigate();
+    
     const [showPassword, setShowPassword] = useState<boolean>(false);
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
@@ -24,7 +26,7 @@ const LoginForm = () => {
     const handlePasswordChange: ChangeEventHandler<HTMLInputElement> = (event) => {
         setPassword(event.target.value);
     };
-
+    
     const login = () => {
         axios.post('http://localhost:3000/auth/login', {
             email: email,
@@ -35,6 +37,8 @@ const LoginForm = () => {
 
                 //* Kontrol amaçlı yazdırıldı.
                 console.log(localStorage.getItem('token'));
+
+                navigate('/conversation');
             })
             .catch(function (error) {
                 console.log(error);
