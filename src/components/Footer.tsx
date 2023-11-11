@@ -5,22 +5,22 @@ const Footer = () => {
 
         // TODO: Responsive yapılacak.
 
-        <div className='bg-gray-100 h-[260px] flex flex-row max-md:flex-col justify-between '>
+        <div className=' bg-gray-100 h-[260px] flex flex-row max-md:flex-col justify-between '>
 
             {/* Left Area -> Includes icon and app name */}
             {/* //TODO: Anasayfaya yönlendirilecek. */}
-            <button className='ml-6 lg:ml-40 md:ml-24 sm:ml-16 mt-3 flex justify-center items-center'>
+            <button className='border-none ml-6 lg:ml-40 md:ml-24 sm:ml-16 mt-3 flex justify-center items-center'>
                 <RiRobot2Fill size={40} />
-                <h1 className='pl-5 text-lg font-semibold tracking-normal leading-normal '>FunCodes</h1>
+                <h1 className='pl-5 text-lg font-semibold tracking-normal leading-normal font-inter '>FunCodes</h1>
             </button>
 
             {/* Center Area ->Includes Support,Term of Use and Privacy Polciy */}
             <div className='text-[#666666] flex justify-center items-center space-x-9'>
 
                 {/* //TODO: Gerekli yönlendirilmeler yapılacak. */}
-                <button className='text-base hover:underline'>Support</button>
-                <button className='text-base hover:underline'>Privacy Policy</button>
-                <button className='text-base hover:underline'>Term of Use</button>
+                <button className='border-none text-base hover:underline font-inter'>Support</button>
+                <button className='border-none text-base hover:underline font-inter'>Privacy Policy</button>
+                <button className='border-none text-base hover:underline font-inter'>Term of Use</button>
             </div>
 
 

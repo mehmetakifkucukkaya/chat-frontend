@@ -8,7 +8,7 @@ const LoginForm = () => {
 
     //TODO: Validate işlemleri yapılacak
     const navigate = useNavigate();
-    
+
     const [showPassword, setShowPassword] = useState<boolean>(false);
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
@@ -26,7 +26,7 @@ const LoginForm = () => {
     const handlePasswordChange: ChangeEventHandler<HTMLInputElement> = (event) => {
         setPassword(event.target.value);
     };
-    
+
     const login = () => {
         axios.post('http://localhost:3000/auth/login', {
             email: email,
@@ -70,14 +70,14 @@ const LoginForm = () => {
                 />
                 <div className="relative mb-3">
                     <input
-                        className="w-full p-3 rounded-xl border border-gray-300"
+                        className="w-[400px] p-3 rounded-xl border border-gray-300"
                         type={showPassword ? 'text' : 'password'}
                         placeholder="Password"
                         value={password}
                         onChange={handlePasswordChange}
                     />
                     <button
-                        className="absolute top-1/2 right-4 transform -translate-y-1/2 text-xl"
+                        className="absolute top-1/2 right-4 transform -translate-y-1/2 text-xl bg-white border-none"
                         onClick={togglePasswordVisibility}
                     >
                         {showPassword ? <HiEyeOff /> : <HiEye />}

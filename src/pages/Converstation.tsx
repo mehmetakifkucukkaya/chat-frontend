@@ -7,7 +7,7 @@ import Typography from 'antd/es/typography/Typography';
 import { CloseCircleOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 import Title from 'antd/es/typography/Title';
 
-const { Header, Content, Sider } = Layout;
+const {Content, Sider } = Layout;
 
 const Converstation: React.FC = () => {
     const [token, setToken] = useState<string | any>(localStorage.getItem('token'))
@@ -126,6 +126,7 @@ const Converstation: React.FC = () => {
         label: <div
             onClick={() => {
                 setCurrentConversations(conversations[index])
+                console.log(conversations[index])
             }}
         >
             {conversations[index]?.name}
