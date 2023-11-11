@@ -51,6 +51,19 @@ const Converstation: React.FC = () => {
         }
     }, [])
 
+    const deleteConverstation = useCallback(async () => {
+
+        const response = await axios.delete(`http://localhost:3000/converstation/${currentConversations?._id}`
+            , {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                },
+            }).catch((err) => {
+                console.log(err);
+            });
+
+    }, [currentConversations])
+
 
     const findConverstation = useCallback(async () => {
         setIsLoading(true)
@@ -136,7 +149,7 @@ const Converstation: React.FC = () => {
             style={{ display: 'flex', alignItems: 'center' }}
         >
             <span style={{ marginRight: 'auto' }}>{conversations[index]?.name}</span>
-            <Button className='bg-transparent border-none text-[#c5c5d2]' >
+            <Button onClick={deleteConverstation} className='bg-transparent border-none text-[#c5c5d2]' >
                 <BsTrash3 size={16} />
             </Button>
         </div>,
