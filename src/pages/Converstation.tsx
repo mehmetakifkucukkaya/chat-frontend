@@ -2,12 +2,13 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { Button, Drawer, Input, Layout, Menu, Spin } from 'antd';
 import { BiMessageAlt } from 'react-icons/bi';
 import { FaPlus } from 'react-icons/fa';
+import { BsSend, BsTrash3 } from 'react-icons/bs';
 import axios from 'axios';
 import Typography from 'antd/es/typography/Typography';
 import { CloseCircleOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 import Title from 'antd/es/typography/Title';
 
-const {Content, Sider } = Layout;
+const { Content, Sider } = Layout;
 
 const Converstation: React.FC = () => {
     const [token, setToken] = useState<string | any>(localStorage.getItem('token'))
@@ -23,11 +24,13 @@ const Converstation: React.FC = () => {
     const [open, setOpen] = useState(false);
     const showDrawer = () => {
         setOpen(true);
-      };
-    
-      const onClose = () => {
+    };
+
+    const onClose = () => {
         setOpen(false);
-      };
+    };
+
+
     const createConverstation = useCallback(async () => {
         try {
             setIsLoading(true)
@@ -37,15 +40,17 @@ const Converstation: React.FC = () => {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                 },
-            }).then((res)=>{
+            }).then((res) => {
                 setIsLoading(false)
             }).catch((err) => {
                 setIsLoading(true)
+
             });
         } catch (error) {
             console.error(error);
         }
     }, [])
+
 
     const findConverstation = useCallback(async () => {
         setIsLoading(true)
@@ -125,12 +130,17 @@ const Converstation: React.FC = () => {
         icon: <BiMessageAlt />,
         label: <div
             onClick={() => {
-                setCurrentConversations(conversations[index])
-                console.log(conversations[index])
+                setCurrentConversations(conversations[index]);
+                console.log(conversations[index]);
             }}
+            style={{ display: 'flex', alignItems: 'center' }}
         >
-            {conversations[index]?.name}
+            <span style={{ marginRight: 'auto' }}>{conversations[index]?.name}</span>
+            <Button className='bg-transparent border-none text-[#c5c5d2]' >
+                <BsTrash3 size={16} />
+            </Button>
         </div>,
+
         className: 'font-inter text-regular',
     }));
 
@@ -138,82 +148,88 @@ const Converstation: React.FC = () => {
 
     return (
         <Layout style={{
-            margin:'-8px'
+            margin: '-8px'
         }} className="flex h-screen">
-            <Sider 
-            breakpoint="md"
-            collapsedWidth="0"
-            onBreakpoint={(broken) => {
-              console.log(broken);
-            }}
-            onCollapse={(collapsed, type) => {
-              console.log(collapsed, type);
-            }}
-            className="overflow-auto h-screen fixed left-0 top-0 bottom-0 " style={{ background: '#101010' }}>
+            <Sider
+                breakpoint="md"
+                collapsedWidth="0"
+                onBreakpoint={(broken) => {
+                    console.log(broken);
+                }}
+                onCollapse={(collapsed, type) => {
+                    console.log(collapsed, type);
+                }}
+                className="overflow-auto h-screen fixed left-0 top-0 bottom-0 " style={{ background: '#101010' }}>
                 <div className=''>
-                <Button
-                type='primary'
-                    onClick={createConverstation}
-                    className="flex mx-12 mt-4 justify-center"
-                >
-                    <div className='flex flex-row justify-center items-center'>
-                    <FaPlus className="" />
-                    <div>New Chat</div>
-                    </div>
-                </Button>
+                    <Button
+                        type='primary'
+                        onClick={createConverstation}
+                        className="flex mx-12 mt-4 justify-center"
+                    >
+                        <div className='flex flex-row justify-center items-center'>
+                            <FaPlus className="mr-2" />
+                            <div>New Chat</div>
+                        </div>
+                    </Button>
                 </div>
 
                 <div className="mt-6" style={{ background: '#101010' }} />
                 <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']} items={items} style={{ background: '#101010' }} />
                 <Drawer
-        title={
-            <div className='flex flex-row justify-between items-center'>
-                <Title level={3}>Menu</Title>
-                <div className='items-center'>
-                <CloseCircleOutlined style={{ fontSize: '24px', marginTop:'15px' }} onClick={onClose} className=''/>
-                </div>
-            </div>
-        }
-        placement='left'
-        closable={false}
-        onClose={onClose}
-        open={open}
-        key='left'
-      >
-        <div className='flex flex-col m-2'>
-            {
-                conversations?.map((item:any,index:number)=>{
-                    return(
-                        <Button
-                        block
-                        className='m-2'
-                        onClick={() => {
-                            setCurrentConversations(item)
-                        }}
-                        >
-                            {item?.name}
-                        </Button>
-                    )
-                })
-            }
-        </div>
-      </Drawer>
+                    title={
+                        <div className='flex flex-row justify-between items-center'>
+                            <Title level={3}>Menu</Title>
+                            <div className='items-center'>
+                                <CloseCircleOutlined style={{ fontSize: '24px', marginTop: '15px' }} onClick={onClose} className='' />
+                            </div>
+                        </div>
+                    }
+                    placement='left'
+                    closable={false}
+                    onClose={onClose}
+                    open={open}
+                    key='left'
+                >
+
+                    {/* Converstations */}
+                    <div className='flex flex-col m-2'>
+                        {
+                            conversations?.map((item: any, index: number) => {
+                                return (
+                                    <Button
+                                        block
+                                        className='m-2'
+                                        onClick={() => {
+                                            setCurrentConversations(item)
+                                        }}
+                                    >
+                                        {item?.name}
+                                    </Button>
+                                )
+                            })
+                        }
+                    </div>
+                </Drawer>
             </Sider>
 
+            {/* Precdicts Area */}
             <Layout className="site-layout">
                 <Content className="">
                     <div className='h-full flex flex-col '>
                         <div className="flex flex-col overflow-x-auto">
-                        <Button className='md:hidden m-5' onClick={showDrawer}><MenuUnfoldOutlined /></Button>
+                            <Button className='md:hidden m-5' onClick={showDrawer}><MenuUnfoldOutlined /></Button>
                             {predictDatas?.map((item: any, index: number) => {
                                 return (
-                                    <div className='mx-5'>
-                                        <Typography className='bg-gray-300 text-end'> 
+                                    <div className='mx-5 '>
+                                        {/* Questions */}
+                                        <Typography className='bg-[#343541] text-end text-[#ffffff] '>
                                             <pre>
                                                 {item?.question}
                                             </pre>
                                         </Typography>
-                                        <Typography>
+
+                                        {/* Answers */}
+                                        <Typography className='bg-[#5a5b6a] text-[#ffffff]'>
                                             <pre>
                                                 {item?.answer}
                                             </pre>
@@ -225,15 +241,21 @@ const Converstation: React.FC = () => {
                                 isLoading
                                     ?
                                     <div className="flex justify-center">
-                                        <Spin size='large'/>
+                                        <Spin size='large' />
                                     </div>
                                     :
                                     <></>
                             }
                         </div>
-                        <div className='place-items-end m-10 flex flex-row'>
+
+
+                        {/* Input Area */}
+                        <div className='place-items-end m-10 flex flex-row '>
                             <Input
-                            onPressEnter={predictApply}
+                                suffix={<Button className='bg-transparent border-none ' onClick={predictApply} >
+                                    <BsSend />
+                                </Button>}
+                                onPressEnter={predictApply}
                                 value={predictName}
                                 onChange={(e) => {
                                     setPredictName(e.target.value)
@@ -241,7 +263,7 @@ const Converstation: React.FC = () => {
                                 style={{
                                     width: '100%',
                                 }} />
-                            <Button onClick={predictApply} className='ml-5' type='primary'>Apply</Button>
+
                         </div>
                     </div>
                 </Content>

@@ -17,7 +17,7 @@ const Navbar = () => {
                 {/* //TODO: Gerekli yönlendirilmeler yapılacak. */}
                 <div className='flex items-center  mr-6 lg:mr-24 md:mr-20 sm:mr-16 '>
                     <button className='p-4 hover:opacity-90 bg-white font-inter text-base border-none'>Login</button>
-                    <button className=' bg-[#030712] text-[white] rounded-md text-base px-3 py-2 hover:opacity-90'>Sign Up</button>
+                    <button className=' bg-[#030712] text-[white] rounded-md text-base px-3 py-2 hover:opacity-90 border-none'>Sign Up</button>
                 </div>
 
             </div>
