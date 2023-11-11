@@ -7,6 +7,7 @@ import axios from 'axios';
 import Typography from 'antd/es/typography/Typography';
 import { CloseCircleOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 import Title from 'antd/es/typography/Title';
+import { Send2 } from 'iconsax-react';
 
 const { Content, Sider } = Layout;
 
@@ -41,6 +42,7 @@ const Converstation: React.FC = () => {
                     'Authorization': `Bearer ${token}`,
                 },
             }).then((res) => {
+                findConverstation()
                 setIsLoading(false)
             }).catch((err) => {
                 setIsLoading(true)
@@ -58,6 +60,8 @@ const Converstation: React.FC = () => {
                 headers: {
                     'Authorization': `Bearer ${token}`,
                 },
+            }).then((res) => {
+                findConverstation()
             }).catch((err) => {
                 console.log(err);
             });
@@ -228,7 +232,7 @@ const Converstation: React.FC = () => {
             {/* Precdicts Area */}
             <Layout className="site-layout">
                 <Content className="">
-                    <div className='h-full flex flex-col '>
+                    <div className='h-full flex flex-col justify-between'>
                         <div className="flex flex-col overflow-x-auto">
                             <Button className='md:hidden m-5' onClick={showDrawer}><MenuUnfoldOutlined /></Button>
                             {predictDatas?.map((item: any, index: number) => {
@@ -242,7 +246,7 @@ const Converstation: React.FC = () => {
                                         </Typography>
 
                                         {/* Answers */}
-                                        <Typography className='bg-[#5a5b6a] text-[#ffffff]'>
+                                        <Typography className=''>
                                             <pre>
                                                 {item?.answer}
                                             </pre>
@@ -263,10 +267,15 @@ const Converstation: React.FC = () => {
 
 
                         {/* Input Area */}
-                        <div className='place-items-end m-10 flex flex-row '>
+                        <div className='place-items-center m-10 flex flex-row '>
                             <Input
-                                suffix={<Button className='bg-transparent border-none ' onClick={predictApply} >
-                                    <BsSend />
+                                suffix={<Button style={{
+                                    border: 'none',
+
+                                }} onClick={predictApply} >
+                                    <Send2
+                                        color='#d9d9d9'
+                                    />
                                 </Button>}
                                 onPressEnter={predictApply}
                                 value={predictName}
