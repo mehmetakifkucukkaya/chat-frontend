@@ -196,6 +196,7 @@ const Converstation: React.FC = () => {
                     title={
                         <div className='flex flex-row justify-between items-center'>
                             <Title level={3}>Menu</Title>
+
                             <div className='items-center'>
                                 <CloseCircleOutlined style={{ fontSize: '24px', marginTop: '15px' }} onClick={onClose} className='' />
                             </div>
@@ -208,20 +209,41 @@ const Converstation: React.FC = () => {
                     key='left'
                 >
 
+                    <div className='flex justify-center items-center mb-5'>
+                        <Button
+                            type='primary'
+                            onClick={createConverstation}
+                            className="flex mx-12 mt-4 justify-center"
+                        >
+                            <div className='flex flex-row justify-center items-center'>
+                                <FaPlus className="mr-2" />
+                                <div>New Chat</div>
+                            </div>
+                        </Button>
+                    </div>
+
                     {/* Converstations */}
                     <div className='flex flex-col m-2'>
                         {
                             conversations?.map((item: any, index: number) => {
                                 return (
-                                    <Button
-                                        block
-                                        className='m-2'
-                                        onClick={() => {
-                                            setCurrentConversations(item)
-                                        }}
-                                    >
-                                        {item?.name}
-                                    </Button>
+                                    <div className="flex space-x-2">
+                                        <Button
+                                            block
+                                            className='m-2 flex-1'
+                                            onClick={() => {
+                                                setCurrentConversations(item)
+                                            }}
+                                        >
+                                            {item?.name}
+                                        </Button>
+
+                                        <Button onClick={deleteConverstation} className='m-2 bg-transparent border-none text-[#c5c5d2]'>
+                                            <BsTrash3 size={16} />
+                                        </Button>
+                                    </div>
+
+
                                 )
                             })
                         }
