@@ -1,13 +1,14 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Button, Drawer, Input, Layout, Menu, Spin } from 'antd';
+import { Avatar, Button, Drawer, Input, Layout, Menu, Spin } from 'antd';
 import { BiMessageAlt } from 'react-icons/bi';
 import { FaPlus } from 'react-icons/fa';
 import { BsSend, BsTrash3 } from 'react-icons/bs';
 import axios from 'axios';
 import Typography from 'antd/es/typography/Typography';
-import { CloseCircleOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
+import { CloseCircleOutlined, MenuUnfoldOutlined, UserOutlined } from '@ant-design/icons';
 import Title from 'antd/es/typography/Title';
-import { Send2 } from 'iconsax-react';
+import { More, Send2 } from 'iconsax-react';
+import UserArea from '../components/UserArea';
 
 const { Content, Sider } = Layout;
 
@@ -176,22 +177,42 @@ const Converstation: React.FC = () => {
                 onCollapse={(collapsed, type) => {
                     console.log(collapsed, type);
                 }}
-                className="overflow-auto h-screen fixed left-0 top-0 bottom-0 " style={{ background: '#101010' }}>
-                <div className=''>
-                    <Button
-                        type='primary'
-                        onClick={createConverstation}
-                        className="flex mx-12 mt-4 justify-center"
-                    >
-                        <div className='flex flex-row justify-center items-center'>
-                            <FaPlus className="mr-2" />
-                            <div>New Chat</div>
+                className="overflow-auto h-screen fixed left-0 top-0 bottom-0 " style={{ background: '#101010' }}
+            >
+                <div className="flex flex-col h-full">
+                    <div>
+                        <Button
+                            type='primary'
+                            onClick={createConverstation}
+                            className="flex mx-12 mt-4 justify-center"
+                        >
+                            <div className='flex flex-row justify-center items-center'>
+                                <FaPlus className="mr-2" />
+                                <div>New Chat</div>
+                            </div>
+                        </Button>
+                    </div>
+
+                    <div className="mt-6" />
+
+                    <div className="bg-transparent p-4 flex flex-col flex-grow">
+                        <div className="flex-grow">
+                            <Menu style={{ background: '#101010' }} theme="dark" mode="inline" defaultSelectedKeys={['1']} items={items} />
+
                         </div>
-                    </Button>
+                        <div className="mt-auto">
+                            <hr className='w-full border-t-0 border-gray-50 mb-3 mt-3' />
+                            <UserArea />
+                        </div>
+                    </div>
+
+
                 </div>
 
-                <div className="mt-6" style={{ background: '#101010' }} />
-                <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']} items={items} style={{ background: '#101010' }} />
+
+
+
+                {/* Drawer Menu & Items */}
                 <Drawer
                     title={
                         <div className='flex flex-row justify-between items-center'>
@@ -248,8 +269,15 @@ const Converstation: React.FC = () => {
                             })
                         }
                     </div>
+
+
+
+
+
+
                 </Drawer>
             </Sider>
+
 
             {/* Precdicts Area */}
             <Layout className="site-layout">
