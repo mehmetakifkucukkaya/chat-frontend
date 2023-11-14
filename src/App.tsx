@@ -8,9 +8,9 @@ function App() {
     <Router>
       <Routes>
         {/* Diğer sayfalar buraya eklenir */}
-        <Route path="/" element={<Payment />} />
+        <Route path="/" element={<Login />} />
         <Route path="/conversation" element={<Converstation />} />
-        {/* <Route path="/payment" element={<Payment />} /> */}
+        <Route path="/payment" element={<Payment />} />
       </Routes>
     </Router>
   );

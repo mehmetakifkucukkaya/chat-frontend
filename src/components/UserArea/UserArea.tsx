@@ -7,8 +7,14 @@ import { useNavigate } from 'react-router-dom';
 
 
 
+
 const UserArea: React.FC<UserAreaProps> = ({ userNameColor = 'white' }) => {
     const navigate = useNavigate();
+
+    // Payment Sayfasına Yönlendiriyor
+    const goToPayment = () => {
+        navigate('/payment');
+    }
 
     const logOut = () => {
         localStorage.removeItem('token');
@@ -22,7 +28,7 @@ const UserArea: React.FC<UserAreaProps> = ({ userNameColor = 'white' }) => {
             key: '0',
         },
         {
-            label: <Button className='w-full font-inter'>Payment</Button>,
+            label: <Button onClick={goToPayment} className='w-full font-inter'>Payment</Button>,
             key: '1',
         },
         {
@@ -48,3 +54,4 @@ const UserArea: React.FC<UserAreaProps> = ({ userNameColor = 'white' }) => {
 };
 
 export default UserArea;
+
