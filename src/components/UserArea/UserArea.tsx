@@ -5,7 +5,9 @@ import { Avatar, Button, Dropdown } from 'antd';
 import { More } from 'iconsax-react';
 import { useNavigate } from 'react-router-dom';
 
-const UserArea: React.FC = () => {
+
+
+const UserArea: React.FC<UserAreaProps> = ({ userNameColor = 'white' }) => {
     const navigate = useNavigate();
 
     const logOut = () => {
@@ -37,7 +39,7 @@ const UserArea: React.FC = () => {
             <a onClick={(e) => e.preventDefault()}>
                 <div className="flex items-center">
                     <Avatar className='mb-2' shape="square" size={36} icon={<UserOutlined />} />
-                    <span className='ml-2 font-inter font-semibold text-base text-white'>User Name</span>
+                    <span className={`ml-2 font-inter font-semibold text-base text-${userNameColor}`}>User Name</span>
                     <More className='ml-2' />
                 </div>
             </a>

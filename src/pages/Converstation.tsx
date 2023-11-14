@@ -8,7 +8,7 @@ import Typography from 'antd/es/typography/Typography';
 import { CloseCircleOutlined, MenuUnfoldOutlined, UserOutlined } from '@ant-design/icons';
 import Title from 'antd/es/typography/Title';
 import { More, Send2 } from 'iconsax-react';
-import UserArea from '../components/UserArea';
+import UserArea from '../components/UserArea/UserArea';
 
 const { Content, Sider } = Layout;
 
@@ -217,7 +217,6 @@ const Converstation: React.FC = () => {
                     title={
                         <div className='flex flex-row justify-between items-center'>
                             <Title level={3}>Menu</Title>
-
                             <div className='items-center'>
                                 <CloseCircleOutlined style={{ fontSize: '24px', marginTop: '15px' }} onClick={onClose} className='' />
                             </div>
@@ -229,7 +228,6 @@ const Converstation: React.FC = () => {
                     open={open}
                     key='left'
                 >
-
                     <div className='flex justify-center items-center mb-5'>
                         <Button
                             type='primary'
@@ -243,39 +241,36 @@ const Converstation: React.FC = () => {
                         </Button>
                     </div>
 
-                    {/* Converstations */}
-                    <div className='flex flex-col m-2'>
-                        {
-                            conversations?.map((item: any, index: number) => {
-                                return (
-                                    <div className="flex space-x-2">
-                                        <Button
-                                            block
-                                            className='m-2 flex-1'
-                                            onClick={() => {
-                                                setCurrentConversations(item)
-                                            }}
-                                        >
-                                            {item?.name}
-                                        </Button>
+                    {/* Conversations */}
+                    <div className='flex flex-col h-full m-2'>
+                        {conversations?.map((item: any, index: number) => (
+                            <div key={index} className="flex space-x-2">
+                                <Button
+                                    block
+                                    className='m-2 flex-1'
+                                    onClick={() => {
+                                        setCurrentConversations(item)
+                                    }}
+                                >
+                                    {item?.name}
+                                </Button>
+                                <Button onClick={deleteConverstation} className='m-2 bg-transparent border-none text-[#c5c5d2]'>
+                                    <BsTrash3 size={16} />
+                                </Button>
+                            </div>
+                        ))}
 
-                                        <Button onClick={deleteConverstation} className='m-2 bg-transparent border-none text-[#c5c5d2]'>
-                                            <BsTrash3 size={16} />
-                                        </Button>
-                                    </div>
-
-
-                                )
-                            })
-                        }
+                        <hr className='w-full border-t-0 border-blue-300' />
                     </div>
 
-
-
-
-
-
+                    {/* UserArea */}
+                    <div className='flex justify-center'>
+                        <UserArea userNameColor='black' />
+                    </div>
                 </Drawer>
+
+
+
             </Sider>
 
 

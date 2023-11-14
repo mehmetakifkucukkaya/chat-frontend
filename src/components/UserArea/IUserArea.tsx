@@ -1,0 +1,4 @@
+
+interface UserAreaProps {
+    userNameColor?: string;
+}
