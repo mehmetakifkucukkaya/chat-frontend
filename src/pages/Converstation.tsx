@@ -1,13 +1,13 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { Avatar, Button, Drawer, Input, Layout, Menu, Spin } from 'antd';
+import { Button, Drawer, Input, Layout, Menu, Spin } from 'antd';
 import { BiMessageAlt } from 'react-icons/bi';
 import { FaPlus } from 'react-icons/fa';
-import { BsSend, BsTrash3 } from 'react-icons/bs';
+import { BsTrash3 } from 'react-icons/bs';
 import axios from 'axios';
 import Typography from 'antd/es/typography/Typography';
-import { CloseCircleOutlined, MenuUnfoldOutlined, UserOutlined } from '@ant-design/icons';
+import { CloseCircleOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
 import Title from 'antd/es/typography/Title';
-import { More, Send2 } from 'iconsax-react';
+import { Send2 } from 'iconsax-react';
 import UserArea from '../components/UserArea/UserArea';
 
 const { Content, Sider } = Layout;
