@@ -1,6 +1,20 @@
 import { RiRobot2Fill } from 'react-icons/ri'
+import { useNavigate } from 'react-router-dom';
+
 
 const Navbar = () => {
+
+    const navigate = useNavigate();
+
+    const navigatePayment = () => {
+        navigate('/signUp');
+    }
+
+    const navigateLogIn = () => {
+        navigate('/');
+    }
+
+
     return (
         <>
             <div className='flex justify-between '>
@@ -16,8 +30,8 @@ const Navbar = () => {
                 {/* //TODO: Show buttons only lg mode. */}
                 {/* //TODO: Gerekli yönlendirilmeler yapılacak. */}
                 <div className='flex items-center  mr-6 lg:mr-24 md:mr-20 sm:mr-16 '>
-                    <button className='p-4 hover:opacity-90 bg-white font-inter text-base border-none'>Login</button>
-                    <button className=' bg-[#030712] text-[white] rounded-md text-base px-3 py-2 hover:opacity-90 border-none'>Sign Up</button>
+                    <button onClick={navigateLogIn} className='cursor-pointer p-4 hover:opacity-90 bg-white font-inter text-base border-none'>Login</button>
+                    <button onClick={navigatePayment} className='cursor-pointer bg-[#030712] text-[white] rounded-md text-base px-3 py-2 hover:opacity-90 border-none'>Sign Up</button>
                 </div>
 
             </div>

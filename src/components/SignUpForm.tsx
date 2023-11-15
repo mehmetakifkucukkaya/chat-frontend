@@ -5,12 +5,13 @@ import { useNavigate } from 'react-router-dom';
 import { Alert, Input } from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 
-const LoginForm = () => {
+const SignUpForm = () => {
 
     const navigate = useNavigate();
 
     const [email, setEmail] = useState<string>('');
     const [password, setPassword] = useState<string>('');
+    const [name, setName] = useState<string>('');
     const [showError, setShowError] = useState<boolean>(false);
 
 
@@ -22,25 +23,27 @@ const LoginForm = () => {
     const handlePasswordChange: ChangeEventHandler<HTMLInputElement> = (event) => {
         setPassword(event.target.value);
     };
+    const handleNameChange: ChangeEventHandler<HTMLInputElement> = (event) => {
+        setName(event.target.value);
+    }
 
-    const login = () => {
-        axios.post('http://localhost:3000/auth/login', {
+    const signUp = async () => {
+        //TODO: user verisi olarak undefined dönüyor
+
+        const response = await axios.post('http://localhost:3000/user', {
+            name: name,
             email: email,
             password: password
         })
             .then(function (response) {
-                localStorage.setItem('token', response.data.data); //* Token localstorage'a kaydedildi.
+                localStorage.setItem('user', response.data.data);
 
-                //* Kontrol amaçlı yazdırıldı.
-                console.log(localStorage.getItem('token'));
-
-                navigate('/converstation');
+                console.log(localStorage.getItem('user'));
             })
             .catch(function (error) {
                 console.log(error);
 
-                // Login işlemi başarısız olursa hata mesajı gösterilecek.
-                setShowError(true);
+                setShowError(true)
             });
     }
 
@@ -48,20 +51,31 @@ const LoginForm = () => {
     return (
         <div className='mt-16 lg:mt-24 md:mt-24 sm:mt-20 flex flex-col items-center'>
 
-
             {/* Title */}
             <div className='justify-items-center'>
                 <h1 className='font-bold text-2xl'>
-                    Log in to FunCodes AI
+                    Create Your Account
                 </h1>
             </div>
 
             {/* Inputs */}
             <form className="flex flex-col p-4 bg-white ">
+                {/* Name */}
+                <div className='mb-3 w-[350px] '>
+                    <Input
+                        onPressEnter={signUp}
+                        className='rounded-xl h-12'
+                        status={email.trim() === '' ? 'error' : ''}
+                        type="text"
+                        placeholder="Name"
+                        value={name}
+                        onChange={handleNameChange}
+                    />
+                </div>
                 {/* Email */}
                 <div className='mb-3 w-[350px] '>
                     <Input
-                        onPressEnter={login}
+                        onPressEnter={signUp}
                         className='rounded-xl h-12'
                         status={email.trim() === '' ? 'error' : ''}
                         type="email"
@@ -74,7 +88,7 @@ const LoginForm = () => {
                 {/* Password */}
                 <div className="relative mb-2 ">
                     <Input.Password
-                        onPressEnter={login}
+                        onPressEnter={signUp}
                         className='rounded-xl h-12'
                         status={password.trim() === '' ? 'error' : ''}
                         placeholder="Password"
@@ -85,24 +99,22 @@ const LoginForm = () => {
                 </div>
             </form>
 
-            <p>Don't have an account? <span className='font-medium underline '>Sign up</span></p>
+            <p>Already have an account? <span className='font-medium underline '>Log in</span></p>
 
             {/* Button */}
             <div className="">
-                <button onClick={login} className="cursor-pointer bg-[#030712] text-white text-s mt-4 rounded-md h-[50px] md:w-[400px] sm:w-64 w-[340px] flex items-center justify-center border-none hover:opacity-95">
+                <button onClick={signUp} className="cursor-pointer bg-[#030712] text-white text-s mt-4 rounded-md h-[50px] md:w-[400px] sm:w-64 w-[340px] flex items-center justify-center border-none hover:opacity-95">
                     <BiMessage className="mr-2" size={15} />
-                    Continue
+                    Sign Up
                 </button>
             </div>
-
-            <span className='mt-4 underline font-medium'>Forgot Password</span>
 
 
             {/* Hata mesajı */}
             {showError && (
                 <Alert
                     message="Error !"
-                    description="Login failed. Please check your information."
+                    description="SignUp failed. Please check your information."
                     type="error"
                     showIcon
                     closable
@@ -114,5 +126,5 @@ const LoginForm = () => {
     );
 }
 
-export default LoginForm
+export default SignUpForm
 

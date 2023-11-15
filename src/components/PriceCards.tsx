@@ -44,6 +44,8 @@ const PricingCards = () => {
                             <span>{card.description}</span>
                         </div>
 
+
+                        {/* //TODO Kart Bilgileri Kısmına Gönderecek  */}
                         <button
                             className={`bg-[#292b33] hover:text-white text-base w-[200px] rounded-md border-none font-semibold my-6 mx-auto py-3`}
                         >

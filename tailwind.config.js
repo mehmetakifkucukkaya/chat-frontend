@@ -8,11 +8,14 @@ export default {
     preflight: false,
   },
   theme: {
-    extend: {},
-    fontFamily: {
-      inter: ['"Inter"', '"sans-serif"'],
-    }
-  },
-  plugins: [],
+    extend: {
+      cursor: {
+        pointer: 'pointer', // veya istediğiniz başka bir imleç türü
+      },
+      fontFamily: {
+        inter: ['"Inter"', '"sans-serif"'],
+      }
+    },
+    plugins: [],
+  }
 }
-
