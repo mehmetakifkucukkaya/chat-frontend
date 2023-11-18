@@ -23,6 +23,29 @@ const LoginForm = () => {
         setPassword(event.target.value);
     };
 
+    const getUserInfo = (email: string, password: string) => {
+        // Token'ı önceden almanız ve bir değişkende saklamanız gereklidir.
+        const accessToken = 'buraya_token';
+
+        axios.get('http://localhost:3000/auth/me', {
+            headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`,
+            },
+            params: {
+                email: email,
+                password: password
+            }
+        })
+            .then(function (response) {
+                localStorage.setItem('user', JSON.stringify(response?.data?.data));
+
+                console.log(response?.data?.data, "USER INFO");
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+
     const login = () => {
         axios.post('http://localhost:3000/auth/login', {
             email: email,
@@ -35,6 +58,11 @@ const LoginForm = () => {
                 console.log(localStorage.getItem('token'));
 
                 navigate('/converstation');
+
+                //* Kullanıcı bilgilerini alıyoruz
+                getUserInfo(email, password);
+
+                const user = localStorage.getItem('user');
             })
             .catch(function (error) {
                 console.log(error);

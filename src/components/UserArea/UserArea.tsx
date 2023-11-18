@@ -3,7 +3,7 @@ import { UserOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Avatar, Button, Dropdown } from 'antd';
 import { More } from 'iconsax-react';
-import { useNavigate } from 'react-router-dom';
+import { json, useNavigate } from 'react-router-dom';
 
 
 
@@ -21,6 +21,21 @@ const UserArea: React.FC<UserAreaProps> = ({ userNameColor = 'white' }) => {
         console.log("Log Out olundu");
         navigate('/');
     };
+
+    const userInfo = () => {
+        const userString = localStorage.getItem('user');
+
+        if (userString) {
+            const user = JSON.parse(userString);
+            console.log("User Info:", user);
+
+            // Burada user adına ulaşabilirsiniz
+            const userName = user.name;
+            return userName;
+        }
+
+        return "User Name"; // Eğer kullanıcı bilgisi yoksa varsayılan bir değer döndür
+    }
 
     const items: MenuProps['items'] = [
         {
@@ -45,7 +60,8 @@ const UserArea: React.FC<UserAreaProps> = ({ userNameColor = 'white' }) => {
             <a onClick={(e) => e.preventDefault()}>
                 <div className="flex items-center">
                     <Avatar className='mb-2' shape="square" size={36} icon={<UserOutlined />} />
-                    <span className={`ml-2 font-inter font-semibold text-base text-${userNameColor}`}>User Name</span>
+                    <span className={`ml-2 font-inter font-semibold text-base text-${userNameColor}`}>
+                        {userInfo()}</span>
                     <More className='ml-2' />
                 </div>
             </a>

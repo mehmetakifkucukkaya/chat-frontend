@@ -1,4 +1,4 @@
-import { ChangeEventHandler, useState } from 'react'
+import { ChangeEventHandler,  useState } from 'react'
 import { BiMessage } from 'react-icons/bi'
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -36,9 +36,9 @@ const SignUpForm = () => {
             password: password
         })
             .then(function (response) {
-                localStorage.setItem('user', response.data.data);
+               
+                navigate('/');
 
-                console.log(localStorage.getItem('user'));
             })
             .catch(function (error) {
                 console.log(error);
