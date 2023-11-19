@@ -35,7 +35,8 @@ const LoginForm = () => {
             }
         })
             .then(function (response) {
-                localStorage.setItem('user', JSON.stringify(response?.data?.data));
+                localStorage.setItem('user', (response?.data?.data));
+
             })
             .catch(function (error) {
                 console.log(error);
@@ -55,7 +56,6 @@ const LoginForm = () => {
 
                 navigate('/converstation');
 
-                const user = localStorage.getItem('user');
             })
             .catch(function (error) {
                 console.log(error);

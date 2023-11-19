@@ -1,9 +1,7 @@
-import { RiRobot2Fill } from 'react-icons/ri'
+import { RiRobot2Fill } from 'react-icons/ri';
 import { useNavigate } from 'react-router-dom';
 
-
-const Navbar = () => {
-
+const NavBar_Home = () => {
     const navigate = useNavigate();
 
     const navigatePayment = () => {
@@ -12,7 +10,6 @@ const Navbar = () => {
 
     const navigateLogIn = () => {
         navigate('/login');
-
     }
 
 
@@ -25,6 +22,16 @@ const Navbar = () => {
                     <RiRobot2Fill size={40} />
                     <h1 className='pl-5 text-lg font-semibold tracking-normal leading-normal '>FunCodes</h1>
                 </div>
+
+                {/* Center Area */}
+
+                <div className='flex flex-row items-center'>
+                    <p className="mr-4">Use AI App</p>
+                    <p className="mr-4">Use Cases</p>
+                    <p className="mr-4">News</p>
+                    <p>Pricing</p>
+                </div>
+
 
                 {/* Right Area ->  Includes login button an signup button*/}
 
@@ -41,9 +48,7 @@ const Navbar = () => {
             <hr className='w-full border-gray-300 mt-3' />
 
         </>
-
-
     )
 }
 
-export default Navbar;
+export default NavBar_Home

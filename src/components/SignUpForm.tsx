@@ -37,7 +37,7 @@ const SignUpForm = () => {
         })
             .then(function (response) {
                
-                navigate('/');
+                navigate('/login');
 
             })
             .catch(function (error) {
