@@ -16,8 +16,12 @@ const UserArea: React.FC<UserAreaProps> = ({ userNameColor = 'white' }) => {
 
     const logOut = () => {
         localStorage.removeItem('token');
+        localStorage.removeItem('user');
+
         console.log("Log Out olundu");
         navigate('/');
+
+
     };
 
     const userInfo = () => {
