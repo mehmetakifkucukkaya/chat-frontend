@@ -1,4 +1,5 @@
 import { PiCurrencyDollarSimpleFill } from "react-icons/pi";
+import { useNavigate } from "react-router";
 
 const PricingCards = () => {
     const cardData = [
@@ -21,6 +22,12 @@ const PricingCards = () => {
 
         },
     ];
+
+    const navigate = useNavigate();
+
+    const getPaymnetPage = () => {
+        navigate("/getPayment");
+    }
 
     return (
         <div className="w-full py-[10rem] px-4 bg-white">
@@ -47,6 +54,7 @@ const PricingCards = () => {
 
                         {/* //TODO Kart Bilgileri Kısmına Gönderecek  */}
                         <button
+                        onClick={getPaymnetPage}
                             className={`bg-[#292b33] hover:text-white text-base w-[200px] rounded-md border-none font-semibold my-6 mx-auto py-3`}
                         >
                             Start Trial

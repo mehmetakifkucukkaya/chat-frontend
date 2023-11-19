@@ -5,11 +5,11 @@ const Footer = () => {
 
         // TODO: Responsive yapılacak.
 
-        <div className=' bg-gray-100 h-[260px] flex flex-row max-md:flex-col justify-between mt-4'>
+        <div className=' bg-gray-200 h-[260px] flex flex-row max-md:flex-col justify-between mt-4'>
 
             {/* Left Area -> Includes icon and app name */}
             {/* //TODO: Anasayfaya yönlendirilecek. */}
-            <button className='border-none ml-6 lg:ml-40 md:ml-24 sm:ml-16 mt-3 flex justify-center items-center bg-[#f3f4f6] '>
+            <button className='border-none ml-6 lg:ml-40 md:ml-24 sm:ml-16 mt-3 flex justify-center items-center bg-transparent'>
                 <RiRobot2Fill size={40} />
                 <h1 className='pl-5 text-lg font-semibold tracking-normal leading-normal font-inter'>FunCodes</h1>
             </button>

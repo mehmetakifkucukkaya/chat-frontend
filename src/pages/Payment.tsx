@@ -6,6 +6,7 @@ const Payment = () => {
     return (
         <div>
             <Navbar />
+
             <PriceCards />
 
             <Footer />

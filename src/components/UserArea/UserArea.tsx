@@ -3,9 +3,7 @@ import { UserOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import { Avatar, Button, Dropdown } from 'antd';
 import { More } from 'iconsax-react';
-import { json, useNavigate } from 'react-router-dom';
-
-
+import { useNavigate } from 'react-router-dom';
 
 
 const UserArea: React.FC<UserAreaProps> = ({ userNameColor = 'white' }) => {

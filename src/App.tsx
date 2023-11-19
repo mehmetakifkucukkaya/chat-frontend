@@ -3,6 +3,7 @@ import Converstation from "./pages/Converstation";
 import Login from "./pages/Login";
 import Payment from './pages/Payment';
 import SignUp from './pages/SignUp';
+import GetPayment from './pages/GetPayment';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/converstation" element={<Converstation />} />
         <Route path="/payment" element={<Payment />} />
+        <Route path="/getPayment" element={<GetPayment />} />
       </Routes>
     </Router>
   );
